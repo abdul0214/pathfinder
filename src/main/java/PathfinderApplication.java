@@ -3,7 +3,10 @@ import org.springframework.web.client.RestTemplate;
 public class PathfinderApplication {
 
     private static final PathFinderService pathFinderService = new PathFinderService();
-    private static final String bpmnFileUrl = "https://n35ro2ic4d.execute-api.eu-central-1.amazonaws.com/prod/engine-rest/process-definition/key/invoice/xml";
+
+    private static final String bpmnFileUrl = "https://n35ro2ic4d.execute-api.eu-central-1.amazonaws.com" +
+            "/prod/engine-rest/process-definition/key/invoice/xml";
+
     public static void main(String[] args) {
         if (args.length != 2){
             throw new IllegalArgumentException("incorrect input");
@@ -21,5 +24,4 @@ public class PathfinderApplication {
             System.exit(0);
         }
     }
-
 }
