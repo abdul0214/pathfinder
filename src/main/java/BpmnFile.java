@@ -1,11 +1,11 @@
 import com.fasterxml.jackson.annotation.JsonSetter;
-import lombok.Data;
+import lombok.Getter;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 
 import java.io.ByteArrayInputStream;
 
-@Data
+@Getter
 public class BpmnFile {
 
     private String id;
