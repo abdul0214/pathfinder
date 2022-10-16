@@ -7,8 +7,6 @@ plugins {
 
 group = 'com.camunda'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -42,16 +40,3 @@ jar {
         attributes 'Main-Class': 'PathfinderApplication'
     }
 }
-
-//jar {
-//    manifest.attributes["Main-Class"] = "PathfinderApplication"
-//    val dependencies = configurations
-//            .runtimeClasspath
-//            .get()
-//            .map(::zipTree) // OR .map { zipTree(it) }
-//    from(dependencies)
-//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//}
-//tasks.jar {
-//    manifest.attributes["Main-Class"] = "PathfinderApplication"
-//}
