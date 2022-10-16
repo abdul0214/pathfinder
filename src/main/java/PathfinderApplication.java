@@ -25,7 +25,7 @@ public class PathfinderApplication {
                 {
                     System.exit(-1);
                 }
-                System.out.println("The path from approveInvoice to invoiceProcessed is:" + path);
+                System.out.println(String.format("The path from %s to %s is:", sourceNodeId, targetNodeId) + path);
                 System.exit(0);
             } catch (Exception clientErrorException) {
                 System.out.println("error in fetching bpmn file: " + clientErrorException.getMessage());
