@@ -29,10 +29,10 @@ public class PathFinderService {
                 continue;
             }
 
-            List<String> childList = tracePath(visitedNodeIds, flow.getTarget(), targetNodeId);
-            if (childList != null) {
-                childList.add(0, currentNode.getId());
-                return childList;
+            List<String> innerList = tracePath(visitedNodeIds, flow.getTarget(), targetNodeId);
+            if (innerList != null) {
+                innerList.add(0, currentNode.getId());
+                return innerList;
             }
         }
         return null;

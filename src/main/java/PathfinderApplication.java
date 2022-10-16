@@ -10,27 +10,26 @@ public class PathfinderApplication {
             "/prod/engine-rest/process-definition/key/invoice/xml";
 
     public static void main(String[] args) {
-        if (args.length != 2){
+        if (args.length != 2) {
             System.out.println("incorrect input");
             System.exit(-1);
         }
-        else {
-            String sourceNodeId = args[0];
-            String targetNodeId = args[1];
-            RestTemplate restTemplate = new RestTemplate();
-            try {
-                BpmnFile response = restTemplate.getForObject(bpmnFileUrl, BpmnFile.class);
-                List<String> path = pathFinderService.findPath(sourceNodeId, targetNodeId, response.getBpmn20Xml());
-                if (path == null)
-                {
-                    System.exit(-1);
-                }
-                System.out.println(String.format("The path from %s to %s is:", sourceNodeId, targetNodeId) + path);
-                System.exit(0);
-            } catch (Exception clientErrorException) {
-                System.out.println("error in fetching bpmn file: " + clientErrorException.getMessage());
-                System.exit(-1);
-            }
+        String sourceNodeId = args[0];
+        String targetNodeId = args[1];
+        RestTemplate restTemplate = new RestTemplate();
+        BpmnFile bpmnFile = null;
+        try {
+            bpmnFile = restTemplate.getForObject(bpmnFileUrl, BpmnFile.class);
+        } catch (Exception exception) {
+            System.out.println("error in fetching bpmn file: " + exception.getMessage());
+            System.exit(-1);
         }
+        List<String> path = pathFinderService.findPath(sourceNodeId, targetNodeId, bpmnFile.getBpmn20Xml());
+        if (path == null) {
+            System.out.println("no path found");
+            System.exit(-1);
+        }
+        System.out.println(String.format("The path from %s to %s is:", sourceNodeId, targetNodeId) + path);
+        System.exit(0);
     }
 }
